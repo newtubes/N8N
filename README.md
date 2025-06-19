@@ -1,6 +1,4 @@
-# N8N
-🌞 Ritual Diario Automágico – N8N Flow ✨  
-
+# 🌞 Ritual Diario Automágico – N8N Flow ✨
 
 **Automatización matinal creada con amor, propósito y tecnología.**  
 Este flujo ejecutado en N8N genera diariamente una afirmación positiva y una frase poética inspiradora mediante Hugging Face, y las envía por Telegram como un mensaje personalizado para comenzar el día en sintonía.
@@ -39,4 +37,35 @@ Cada día a las 8:00 AM:
 
 ## 📬 Ejemplo de mensaje generado
 
+```
+✨ Buen día, Beca 🌞  
+Afirmación: “Estoy guiada por mi luz interior. Cada paso es un milagro.”  
+Mensaje del Oráculo: “El sol que llevás adentro no depende del cielo.”  
+🎶 Hoy será hermoso.
+```
 
+---
+
+## 🌈 Personalización
+
+Podés expandir este flujo agregando:
+- Clima diario con OpenWeather API
+- Tareas Notion o Google Tasks
+- Canción recomendada (Spotify API)
+- Visuales con IA (DALL·E, Stable Diffusion)
+
+---
+
+## 💜 Autora
+
+**Rebeca Romcy Ribeiro**  
+Curadora de automatizaciones con alma.  
+Estudiante de IA y ciberseguridad. Creadora de mundos.  
+GitHub: [tu_usuario](https://github.com/tu_usuario)
+
+---
+
+## 🌟 Licencia
+
+Este proyecto se distribuye bajo la licencia MIT.  
+Usalo, modificá y compartilo… siempre con magia ✨
