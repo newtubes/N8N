@@ -1,0 +1,139 @@
+{
+    "name": "Ritual Diario Autom\u00e1gico",
+    "nodes": [
+        {
+            "parameters": {
+                "triggerTimes": [
+                    {
+                        "mode": "everyDay",
+                        "hour": 8,
+                        "minute": 0
+                    }
+                ]
+            },
+            "name": "Cron",
+            "type": "n8n-nodes-base.cron",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "authentication": "predefinedCredentialType",
+                "httpMethod": "POST",
+                "url": "https://api-inference.huggingface.co/models/gpt2",
+                "options": {},
+                "bodyParametersUi": {
+                    "parameter": [
+                        {
+                            "name": "inputs",
+                            "value": "Genera una afirmaci\u00f3n positiva corta y una frase po\u00e9tica inspiradora para comenzar el d\u00eda con magia."
+                        }
+                    ]
+                },
+                "headerParametersUi": {
+                    "parameter": [
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer YOUR_HUGGINGFACE_API_KEY"
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ]
+                }
+            },
+            "name": "HuggingFace Request",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ],
+            "credentials": {
+                "httpBasicAuth": {
+                    "id": "1",
+                    "name": "HuggingFace API"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "values": {
+                    "string": [
+                        {
+                            "name": "mensaje",
+                            "value": "\u2728 Buen d\u00eda, Beca \ud83c\udf1e\n{{ $json[0].generated_text }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "name": "Preparar Mensaje",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "chatId": "YOUR_TELEGRAM_CHAT_ID",
+                "text": "={{ $json.mensaje }}",
+                "additionalFields": {}
+            },
+            "name": "Enviar Telegram",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [
+                850,
+                300
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "2",
+                    "name": "Telegram Bot"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Cron": {
+            "main": [
+                [
+                    {
+                        "node": "HuggingFace Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "HuggingFace Request": {
+            "main": [
+                [
+                    {
+                        "node": "Preparar Mensaje",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Preparar Mensaje": {
+            "main": [
+                [
+                    {
+                        "node": "Enviar Telegram",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
