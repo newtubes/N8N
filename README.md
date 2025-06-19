@@ -61,7 +61,7 @@ Podés expandir este flujo agregando:
 **Rebeca Romcy Ribeiro**  
 Curadora de automatizaciones con alma.  
 Estudiante de IA y ciberseguridad. Creadora de mundos.  
-GitHub: [tu_usuario](https://github.com/tu_usuario)
+GitHub: [tu_usuario](https://github.com/newtubes)
 
 ---
 
